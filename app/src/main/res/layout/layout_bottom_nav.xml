@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@drawable/bg_navbar"
+    android:layout_marginHorizontal="10dp"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/navHome"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:src="@drawable/ic_home"
+            android:layout_width="35dp"
+            android:tint="@color/white"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/textHome"-->
+<!--            android:text="Home"-->
+<!--            android:textSize="12sp"-->
+<!--            -->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navLeaderboards"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconLeaderboards"
+            android:src="@drawable/ic_leaderboard"
+            android:tint="@color/white"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/textLeaderboards"-->
+<!--            android:text="Leaderboards"-->
+<!--            android:textSize="12sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navLesson"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconLesson"
+            android:src="@drawable/ic_lesson"
+            android:layout_width="35dp"
+            android:tint="@color/white"
+            android:layout_height="35dp"
+            android:padding="5dp"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/textLesson"-->
+<!--            android:text="Lesson"-->
+<!--            android:textSize="12sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navProfile"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iconProfile"
+            android:src="@drawable/ic_profile"
+            android:layout_width="35dp"
+            android:tint="@color/white"
+            android:layout_height="35dp"
+            android:padding="5dp"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/textProfile"-->
+<!--            android:text="Profile"-->
+<!--            android:textSize="12sp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
+
+</LinearLayout>
