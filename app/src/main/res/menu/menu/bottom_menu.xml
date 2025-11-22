@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/orderFragment"
+        android:icon="@drawable/outline_airline_seat_recline_extra_24"
+        android:title="order" />
+
+    <item android:id="@+id/chatFragment"
+        android:icon="@drawable/outline_assignment_24"
+        android:title="Chat" />
+
+    <item android:id="@+id/profileFragment"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profile" />
+
+</menu>
