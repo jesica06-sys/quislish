@@ -7,4 +7,51 @@
     android:layout_height="match_parent"
     tools:context=".StrikeActivity">
 
+    <ImageView
+        android:id="@+id/imageStrike"
+        android:layout_width="198dp"
+        android:layout_height="223dp"
+        app:srcCompat="@drawable/ic_fire"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="124dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="312dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="48dp"
+        android:text="congratulation Ipsum is simply dummy text"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="432dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="295dp"
+        android:layout_height="59dp"
+        android:text="Here’s a design for an educational app, featuring a splash screen and two congratulatory message pages. We used our beloved mascot"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="513dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonStrike"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="36dp"
+        android:text="berikutnya"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
