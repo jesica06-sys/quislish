@@ -1,4 +1,4 @@
-package com.example.quislish.home
+package com.example.quislish.navigasi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
