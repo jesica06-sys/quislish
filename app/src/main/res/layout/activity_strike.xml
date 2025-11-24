@@ -3,54 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@drawable/bg_strike"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StrikeActivity">
 
     <ImageView
         android:id="@+id/imageStrike"
-        android:layout_width="198dp"
-        android:layout_height="223dp"
+        android:layout_width="234dp"
+        android:layout_height="234dp"
         app:srcCompat="@drawable/ic_fire"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="124dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="133dp" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="312dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="48dp"
+        android:layout_width="325dp"
+        android:layout_height="72dp"
         android:text="congratulation Ipsum is simply dummy text"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="432dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="441dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="295dp"
-        android:layout_height="59dp"
+        android:layout_width="283dp"
+        android:layout_height="60dp"
         android:text="Here’s a design for an educational app, featuring a splash screen and two congratulatory message pages. We used our beloved mascot"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="13sp"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="513dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="529dp" />
 
     <Button
         android:id="@+id/buttonStrike"
-        android:layout_width="340dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="350dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="12dp"
         android:text="berikutnya"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="16sp"
+        android:backgroundTint="#9ED0FA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView2" />
 
