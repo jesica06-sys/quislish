@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Quiz Levels"
+        android:text="Home"
         android:textStyle="bold"
         android:textSize="28sp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginVertical="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/cardStreak"
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
         android:padding="16dp"
         android:background="@drawable/bg_streak_card"
         android:gravity="center_vertical"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="30dp"
         android:weightSum="2">
 
         <!-- Bagian teks -->
@@ -58,7 +59,13 @@
             android:adjustViewBounds="true" />
     </LinearLayout>
 
-
+    <TextView
+        android:text="Quis Level"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
     <androidx.recyclerview.widget.RecyclerView
