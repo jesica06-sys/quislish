@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.quislish.R
 
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
@@ -55,7 +54,7 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         txtOpt1 = view.findViewById(R.id.txtOpt1)
         txtOpt2 = view.findViewById(R.id.txtOpt2)
         txtOpt3 = view.findViewById(R.id.txtOpt3)
-        btnNext = view.findViewById(R.id.btnNext)
+        btnNext = view.findViewById(R.id.bottomNext)
 
         // observe current question
         viewModel.currentQuestion.observe(viewLifecycleOwner) { q ->

@@ -162,7 +162,7 @@
 
     <!-- Next button -->
     <Button
-        android:id="@+id/btnNext"
+        android:id="@+id/bottomNext"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:text="berikutnya"
