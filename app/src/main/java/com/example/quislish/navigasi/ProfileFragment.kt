@@ -18,10 +18,8 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        val title = view.findViewById<TextView>(R.id.textViewProfile)
+        val title = view.findViewById<TextView>(R.id.tvAppName)
         title.text = "Profile Fragment"
         return view
     }
-
-
 }
