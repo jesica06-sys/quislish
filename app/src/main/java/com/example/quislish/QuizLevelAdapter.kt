@@ -58,17 +58,17 @@ class QuizLevelAdapter(
         holder.progressBar.progressTintList = ColorStateList.valueOf(color)
 
 
-        holder.itemView.setOnClickListener {
-            val activity = holder.itemView.context as? HomeActivity
-            if (activity != null) {
-                val quizFragment = QuizFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt("levelId", item.id)
-                    }
-                }
-                activity.replaceFragment(quizFragment)
-            }
-        }
+//        holder.itemView.setOnClickListener {
+//            val activity = holder.itemView.context as? HomeActivity
+//            if (activity != null) {
+//                val quizFragment = QuizFragment().apply {
+//                    arguments = Bundle().apply {
+//                        putInt("levelId", item.id)
+//                    }
+//                }
+//                activity.replaceFragment(quizFragment)
+//            }
+//        }
 
     }
 

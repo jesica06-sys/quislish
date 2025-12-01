@@ -2,37 +2,36 @@ package com.example.quislish.navigasi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.quislish.R
 
 
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Load fragment default
-        replaceFragment(HomeFragment())
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
+        navController = navHost.navController
 
-
-        // Setup bottom navbar
         BottomNav(
             activity = this,
             current = "home"
         ) { target ->
             when (target) {
-                "home" -> replaceFragment(HomeFragment())
-                "leaderboards" -> replaceFragment(LeaderboardFragment())
-                "lesson" -> replaceFragment(LessonFragment())
-                "profile" -> replaceFragment(ProfileFragment())
-            }}.setup()
-    }
-
-    fun replaceFragment(fragment: androidx.fragment.app.Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .commit()
+                "home" -> navController.navigate(R.id.homeFragment)
+                "leaderboards" -> navController.navigate(R.id.leaderboardFragment)
+                "lesson" -> navController.navigate(R.id.lessonFragment)
+                "profile" -> navController.navigate(R.id.profileFragment)
+            }
+        }.setup()
     }
 }
+
