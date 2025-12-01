@@ -8,7 +8,7 @@
 
     <!-- Back arrow & top progress -->
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/imgViewBack"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/ic_back"
@@ -29,7 +29,7 @@
         android:progress="1"
         app:layout_constraintEnd_toStartOf="@+id/txtQuestionNumber"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintStart_toEndOf="@+id/imgViewBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
