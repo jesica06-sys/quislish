@@ -1,12 +1,11 @@
-package com.example.quislish.navigasi
+package com.example.quislish.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.quislish.R
-
-
+import com.example.quislish.main.BottomNav
 
 class HomeActivity : AppCompatActivity() {
 
@@ -34,4 +33,3 @@ class HomeActivity : AppCompatActivity() {
         }.setup()
     }
 }
-

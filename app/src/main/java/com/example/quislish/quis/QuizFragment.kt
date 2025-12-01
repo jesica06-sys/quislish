@@ -1,15 +1,19 @@
-package com.example.quislish
+package com.example.quislish.quis
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.quislish.quis.QuizViewModel
+import com.example.quislish.R
+import com.example.quislish.data.model.Question
 
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
@@ -86,12 +90,12 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
                 // sementara tampil toast
                 val score = viewModel.score.value ?: 0
                 // show dialog / toast
-                android.widget.Toast.makeText(requireContext(), "Selesai! Score: $score", android.widget.Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Selesai! Score: $score", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun bindQuestion(q: com.example.quislish.data.model.Question) {
+    private fun bindQuestion(q: Question) {
         txtQuestion.text = q.questionText
         txtOpt0.text = q.options[0]
         txtOpt1.text = q.options[1]

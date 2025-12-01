@@ -1,4 +1,4 @@
-package com.example.quislish
+package com.example.quislish.home
 
 import androidx.annotation.ColorRes
 

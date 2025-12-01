@@ -1,10 +1,10 @@
-package com.example.quislish
+package com.example.quislish.lesson
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quislish.lesson.LessonItem
 import com.example.quislish.databinding.ItemLessonBinding
-import com.example.quislish.LessonItem
 
 class LessonAdapter(
     private val list: List<LessonItem>,

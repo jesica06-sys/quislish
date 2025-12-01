@@ -1,4 +1,4 @@
-package com.example.quislish.navigasi
+package com.example.quislish.main
 
 import android.app.Activity
 import android.graphics.Color

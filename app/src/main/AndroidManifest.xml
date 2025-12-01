@@ -16,7 +16,7 @@
 <!--            android:exported="false"-->
 <!--            android:theme="@style/Theme.Quislish" />-->
         <activity
-            android:name=".StrikeActivity"
+            android:name=".quis.StrikeActivity"
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
@@ -37,7 +37,7 @@
             android:exported="false"
             android:theme="@style/Theme.Quislish" />
         <activity
-            android:name=".navigasi.HomeActivity"
+            android:name=".main.HomeActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

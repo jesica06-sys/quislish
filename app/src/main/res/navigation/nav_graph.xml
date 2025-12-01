@@ -4,22 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.quislish.navigasi.HomeFragment" />
+<!--    <fragment-->
+<!--        android:id="@+id/homeFragment"-->
+<!--        android:name="com.example.quislish.home.HomeFragment" />-->
 
     <fragment
         android:id="@+id/leaderboardFragment"
-        android:name="com.example.quislish.navigasi.LeaderboardFragment" />
+        android:name="com.example.quislish.leaderboard.LeaderboardFragment" />
 
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.quislish.navigasi.ProfileFragment" />
+        android:name="com.example.quislish.profile.ProfileFragment" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.quislish.home.HomeFragment"
+        android:label="Home">
+        <action
+            android:id="@+id/action_homeFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_quizFragment"-->
+<!--            app:destination="@id/quizFragment" />-->
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.quislish.quis.QuizFragment"
+        android:label="Quiz" />
 
     <fragment
         android:id="@+id/lessonFragment"
-        android:name="com.example.quislish.navigasi.LessonFragment"
+        android:name="com.example.quislish.lesson.LessonFragment"
         android:label="fragment_lesson"
         tools:layout="@layout/fragment_lesson" >
         <action
@@ -28,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/lessonDetail"
-        android:name="com.example.quislish.navigasi.LessonDetail"
+        android:name="com.example.quislish.lesson.LessonDetail"
         android:label="fragment_lesson_detail"
         tools:layout="@layout/fragment_lesson_detail" >
         <argument

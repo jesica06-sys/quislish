@@ -1,4 +1,4 @@
-package com.example.quislish
+package com.example.quislish.quis
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

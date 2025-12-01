@@ -6,7 +6,7 @@
     android:background="@drawable/bg_strike"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StrikeActivity">
+    tools:context=".quis.StrikeActivity">
 
     <ImageView
         android:id="@+id/imageStrike"

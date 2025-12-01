@@ -1,4 +1,4 @@
-package com.example.quislish
+package com.example.quislish.quis
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
@@ -10,8 +10,10 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quislish.navigasi.HomeActivity
+import com.example.quislish.R
+import com.example.quislish.home.Level
 
 class QuizLevelAdapter(
     private val levels: List<Level>,
@@ -69,6 +71,17 @@ class QuizLevelAdapter(
 //                activity.replaceFragment(quizFragment)
 //            }
 //        }
+        holder.itemView.setOnClickListener { view ->
+            val bundle = Bundle().apply {
+                putInt("levelId", item.id)
+            }
+
+            Navigation.findNavController(view).navigate(
+                R.id.action_homeFragment_to_quizFragment,
+                bundle
+            )
+        }
+
 
     }
 

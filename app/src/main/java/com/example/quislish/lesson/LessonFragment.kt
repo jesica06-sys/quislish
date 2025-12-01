@@ -1,16 +1,13 @@
-package com.example.quislish.navigasi
+package com.example.quislish.lesson
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import com.example.quislish.lesson.LessonItem
 import com.example.quislish.R
-import com.example.quislish.LessonAdapter
 import com.example.quislish.databinding.FragmentLessonBinding
-import com.example.quislish.LessonItem
 
 class LessonFragment : Fragment() {
 
@@ -40,16 +37,16 @@ class LessonFragment : Fragment() {
             )
         )
 
-        val adapter = LessonAdapter(lessonList) { item ->
-            val action = LessonFragmentDirections
-                .actionLessonFragmentToLessonDetail(
-                    title = item.title,
-                    description = item.description
-                )
-            findNavController().navigate(action)
-        }
-
-        binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvLesson.adapter = adapter
+//        val adapter = LessonAdapter(lessonList) { item ->
+//            val action = LessonFragmentDirections
+//                .actionLessonFragmentToLessonDetail(
+//                    title = item.title,
+//                    description = item.description
+//                )
+//            findNavController().navigate(action)
+//        }
+//
+//        binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
+//        binding.rvLesson.adapter = adapter
     }
 }

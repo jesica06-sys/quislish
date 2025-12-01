@@ -1,4 +1,4 @@
-package com.example.quislish
+package com.example.quislish.lesson
 
 data class LessonItem(
     val title: String,
