@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment
 import com.example.quislish.lesson.LessonItem
 import com.example.quislish.R
 import com.example.quislish.databinding.FragmentLessonBinding
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+
+
 
 class LessonFragment : Fragment() {
 
@@ -37,16 +41,16 @@ class LessonFragment : Fragment() {
             )
         )
 
-//        val adapter = LessonAdapter(lessonList) { item ->
-//            val action = LessonFragmentDirections
-//                .actionLessonFragmentToLessonDetail(
-//                    title = item.title,
-//                    description = item.description
-//                )
-//            findNavController().navigate(action)
-//        }
-//
-//        binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
-//        binding.rvLesson.adapter = adapter
+        val adapter = LessonAdapter(lessonList) { item ->
+            val action = LessonFragmentDirections
+                .actionLessonFragmentToLessonDetail(
+                    title = item.title,
+                    description = item.description
+                )
+            findNavController().navigate(action)
+        }
+
+        binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvLesson.adapter = adapter
     }
 }
