@@ -13,10 +13,10 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quislish.R
-import com.example.quislish.home.Level
+import com.example.quislish.data.model.Level
 
 class QuizLevelAdapter(
-    private val levels: List<Level>,
+    private var levels: List<Level>,
     private val onClick: (Level) -> Unit
 ) : RecyclerView.Adapter<QuizLevelAdapter.LevelViewHolder>() {
 
@@ -47,43 +47,29 @@ class QuizLevelAdapter(
         val color = ContextCompat.getColor(holder.itemView.context, item.color)
         val backgroundColor = ContextCompat.getColor(holder.itemView.context, item.backgroundColor)
 
-        // Set background color for the container
+        // background layout
         holder.containerLayout.background.mutate().setTint(backgroundColor)
 
-        // Set background color for the shadow
+        // shadow view
         (holder.shadowView.background.mutate() as? GradientDrawable)?.setColor(color)
 
-        // Set the background tint for the level number
+        // number indicator
         holder.txtNumber.background.mutate().setTint(color)
 
-        // Set the progress bar color
+        // progress bar color
         holder.progressBar.progressTintList = ColorStateList.valueOf(color)
 
-
-//        holder.itemView.setOnClickListener {
-//            val activity = holder.itemView.context as? HomeActivity
-//            if (activity != null) {
-//                val quizFragment = QuizFragment().apply {
-//                    arguments = Bundle().apply {
-//                        putInt("levelId", item.id)
-//                    }
-//                }
-//                activity.replaceFragment(quizFragment)
-//            }
-//        }
-        holder.itemView.setOnClickListener { view ->
-            val bundle = Bundle().apply {
-                putInt("levelId", item.id)
-            }
-
-            Navigation.findNavController(view).navigate(
-                R.id.action_homeFragment_to_quizFragment,
-                bundle
-            )
+        /** CLICK → navigate */
+        holder.itemView.setOnClickListener {
+            onClick(item)
         }
-
-
     }
 
     override fun getItemCount(): Int = levels.size
+
+    /** UPDATE DATA */
+    fun updateData(newList: List<Level>) {
+        levels = newList
+        notifyDataSetChanged()
+    }
 }

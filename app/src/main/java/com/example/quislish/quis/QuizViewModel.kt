@@ -3,10 +3,14 @@ package com.example.quislish.quis
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quislish.data.model.LevelViewModel
 import com.example.quislish.data.model.Question
 import com.example.quislish.data.repository.QuizRepository
 
-class QuizViewModel(levelId: Int) : ViewModel() {
+class QuizViewModel(
+    private val levelId: Int,
+    private val levelViewModel: LevelViewModel
+) : ViewModel() {
 
     private val questions: List<Question> = QuizRepository.getQuestionsForLevel(levelId)
 
@@ -28,15 +32,10 @@ class QuizViewModel(levelId: Int) : ViewModel() {
         _selectedAnswerIndex.value = index
     }
 
-    /**
-     * Kembalikan true kalau berhasil pindah ke question berikutnya,
-     * false kalau sudah soal terakhir.
-     * Jika next berhasil, reset selectedAnswerIndex.
-     */
     fun nextQuestion(): Boolean {
         val idx = _currentIndex.value ?: 0
 
-        // kalkulasi score: kalau answer dipilih dan benar, tambahkan 1
+        // Hitung score
         val selected = _selectedAnswerIndex.value
         if (selected != null) {
             val correct = questions[idx].correctIndex
@@ -45,15 +44,22 @@ class QuizViewModel(levelId: Int) : ViewModel() {
             }
         }
 
-        if (idx < questions.size - 1) {
+        // Hitung progress
+
+
+        // UPDATE PROGRESS melalui LevelViewModel
+
+
+        // Pindah soal
+        return if (idx < questions.size - 1) {
             val next = idx + 1
+            levelViewModel.updateProgress(levelId, next)
             _currentIndex.value = next
             _currentQuestion.value = questions[next]
             _selectedAnswerIndex.value = null
-            return true
+            true
         } else {
-            // soal habis
-            return false
+            false
         }
     }
 

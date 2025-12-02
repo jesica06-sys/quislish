@@ -8,25 +8,30 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.quislish.quis.QuizViewModel
 import com.example.quislish.R
+import com.example.quislish.data.model.LevelViewModel
 import com.example.quislish.data.model.Question
 
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
+    // Ambil levelId dari Bundle
     private val levelId: Int by lazy {
-        // kalau pakai SafeArgs ganti: QuizFragmentArgs.fromBundle(requireArguments()).levelId
         arguments?.getInt("levelId") ?: 1
     }
 
-    private val viewModel: QuizViewModel by viewModels {
+    // Shared LevelViewModel -> dipakai HomeFragment & QuizFragment
+    private val levelViewModel: LevelViewModel by activityViewModels()
+
+    // >>> TIDAK ADA FILE FACTORY <<<
+    private val quizViewModel: QuizViewModel by viewModels {
         object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return QuizViewModel(levelId) as T
+                return QuizViewModel(levelId, levelViewModel) as T
             }
         }
     }
@@ -47,6 +52,7 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // View binding manual
         txtQuestion = view.findViewById(R.id.txtQuestion)
         txtQuestionNumber = view.findViewById(R.id.txtQuestionNumber)
         topProgress = view.findViewById(R.id.topProgress)
@@ -59,37 +65,30 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         txtOpt2 = view.findViewById(R.id.txtOpt2)
         txtOpt3 = view.findViewById(R.id.txtOpt3)
         btnNext = view.findViewById(R.id.bottomNext)
-
-        // observe current question
-        viewModel.currentQuestion.observe(viewLifecycleOwner) { q ->
-            if (q != null) {
-                bindQuestion(q)
-            }
+        val btnBack: View = view.findViewById(R.id.imgViewBack)
+        // Observers
+        quizViewModel.currentQuestion.observe(viewLifecycleOwner) { q ->
+            if (q != null) bindQuestion(q)
         }
 
-        viewModel.currentIndex.observe(viewLifecycleOwner) { idx ->
-            txtQuestionNumber.text = (idx + 1).toString()
-            topProgress.max = viewModel.totalQuestions()
+        quizViewModel.currentIndex.observe(viewLifecycleOwner) { idx ->
+            txtQuestionNumber.text = "${levelId}"
+            topProgress.max = quizViewModel.totalQuestions()
             topProgress.progress = idx + 1
         }
 
-        // option clicks
         cardOpt0.setOnClickListener { onOptionClicked(0) }
         cardOpt1.setOnClickListener { onOptionClicked(1) }
         cardOpt2.setOnClickListener { onOptionClicked(2) }
         cardOpt3.setOnClickListener { onOptionClicked(3) }
-
+        btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
         btnNext.setOnClickListener {
-            // jika belum memilih jawaban, kamu bisa minta konfirmasi atau disable next
-            val moved = viewModel.nextQuestion()
+            val moved = quizViewModel.nextQuestion()
+
             if (!moved) {
-                // semua soal selesai -> navigasi ke result (kamu implementasi sendiri)
-                // contoh:
-                // val action = QuizFragmentDirections.actionQuizToResult(viewModel.score.value ?: 0)
-                // findNavController().navigate(action)
-                // sementara tampil toast
-                val score = viewModel.score.value ?: 0
-                // show dialog / toast
+                val score = quizViewModel.score.value ?: 0
                 Toast.makeText(requireContext(), "Selesai! Score: $score", Toast.LENGTH_LONG).show()
             }
         }
@@ -101,27 +100,23 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         txtOpt1.text = q.options[1]
         txtOpt2.text = q.options[2]
         txtOpt3.text = q.options[3]
-
-        // reset card background states
         resetOptionStyles()
     }
 
     private fun onOptionClicked(index: Int) {
-        // simpan di ViewModel selected index
-        viewModel.selectAnswer(index)
-        // update UI highlight
+        quizViewModel.selectAnswer(index)
         highlightSelected(index)
     }
 
     private fun resetOptionStyles() {
-        // contoh: ubah elevation / background untuk menandakan unselected
-        val cards = listOf(cardOpt0, cardOpt1, cardOpt2, cardOpt3)
-        cards.forEach { it.cardElevation = 2f; it.isClickable = true }
+        listOf(cardOpt0, cardOpt1, cardOpt2, cardOpt3).forEach {
+            it.cardElevation = 2f
+        }
     }
 
     private fun highlightSelected(index: Int) {
         resetOptionStyles()
-        val selectedCard = when(index) {
+        val selectedCard = when (index) {
             0 -> cardOpt0
             1 -> cardOpt1
             2 -> cardOpt2

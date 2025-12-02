@@ -1,24 +1,41 @@
 package com.example.quislish.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.quislish.R
-import com.example.quislish.main.BottomNav
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+    private lateinit var bottomNavContainer: View   // << deklarasi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        // >>> INIT DI SINI! SESUAI ID DI XML MU <<<
+        bottomNavContainer = findViewById(R.id.bottomNav)
+
         val navHost = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
         navController = navHost.navController
+
+        // --- tampilkan / sembunyikan navbar ---
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val hideOn = setOf(
+                R.id.quizFragment      // fragment quis
+            )
+
+            if (destination.id in hideOn) {
+                bottomNavContainer.visibility = View.GONE
+            } else {
+                bottomNavContainer.visibility = View.VISIBLE
+            }
+        }
 
         BottomNav(
             activity = this,
