@@ -42,12 +42,12 @@ class LessonFragment : Fragment() {
         )
 
         val adapter = LessonAdapter(lessonList) { item ->
-            val action = LessonFragmentDirections
-                .actionLessonFragmentToLessonDetail(
-                    title = item.title,
-                    description = item.description
-                )
-            findNavController().navigate(action)
+            val bundle = Bundle().apply {
+                putString("title", item.title)
+                putString("description", item.description)
+
+            }
+            findNavController().navigate(R.id.action_lessonFragment_to_lessonDetail, bundle)
         }
 
         binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
