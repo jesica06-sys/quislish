@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/homeFragment"-->
-<!--        android:name="com.example.quislish.home.HomeFragment" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/homeFragment"-->
+    <!--        android:name="com.example.quislish.home.HomeFragment" />-->
 
     <fragment
         android:id="@+id/leaderboardFragment"
@@ -24,9 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
-<!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_quizFragment"-->
-<!--            app:destination="@id/quizFragment" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_homeFragment_to_quizFragment"-->
+        <!--            app:destination="@id/quizFragment" />-->
     </fragment>
 
 
