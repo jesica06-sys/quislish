@@ -32,11 +32,13 @@ class LessonFragment : Fragment() {
             LessonItem(
                 "Grammar",
                 "lorem ipsum dolor sit amet...",
+                "ISI KONTEN GRAMMAR",
                 resources.getColor(R.color.purple_200)
             ),
             LessonItem(
                 "Lorem Ipsum",
                 "lorem ipsum dolor sit amet...",
+                "ISI KONTEN LOREM IPSUM",
                 resources.getColor(R.color.gray)
             )
         )
@@ -44,10 +46,13 @@ class LessonFragment : Fragment() {
         val adapter = LessonAdapter(lessonList) { item ->
             val bundle = Bundle().apply {
                 putString("title", item.title)
-                putString("description", item.description)
-
+                putString("content", item.content)
             }
-            findNavController().navigate(R.id.action_lessonFragment_to_lessonDetail, bundle)
+
+            findNavController().navigate(
+                R.id.actionLessonsToLessonDetail,
+                bundle
+            )
         }
 
         binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
