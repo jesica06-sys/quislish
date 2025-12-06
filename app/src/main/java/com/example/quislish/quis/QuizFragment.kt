@@ -1,5 +1,6 @@
 package com.example.quislish.quis
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -90,6 +91,13 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
             if (!moved) {
                 val score = quizViewModel.score.value ?: 0
                 Toast.makeText(requireContext(), "Selesai! Score: $score", Toast.LENGTH_LONG).show()
+
+
+                val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
+                intent.putExtra("score", score)
+                startActivity(intent)
+
+                requireActivity().finish()
             }
         }
     }
