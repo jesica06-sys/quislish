@@ -28,6 +28,7 @@ class StrikeActivity : AppCompatActivity() {
             // pindah ke Activity berikutnya
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

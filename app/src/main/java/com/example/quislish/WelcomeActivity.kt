@@ -1,6 +1,7 @@
 package com.example.quislish
 
 import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -32,6 +33,13 @@ class WelcomeActivity : AppCompatActivity() {
             if (name.isEmpty()) {
                 Toast.makeText(this, "Username wajib diisi!", Toast.LENGTH_SHORT).show()
             } else {
+
+                // ✅ SIMPAN USERNAME KE SHAREDPREFERENCES
+                val sharedPref = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE)
+                val editor = sharedPref.edit()
+                editor.putString("username", name)
+                editor.apply()
+
                 // pindah activity
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra("username", name)
