@@ -23,7 +23,7 @@ class CompleteQuizActivity : AppCompatActivity() {
         val bottomNext = findViewById<Button>(R.id.bottomNext)
 
         bottomNext.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, StrikeActivity::class.java)
             startActivity(intent)
             finish()
         }

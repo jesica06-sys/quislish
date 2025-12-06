@@ -16,6 +16,16 @@ class LessonDetail : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_lesson_detail, container, false)
+
+        val title = arguments?.getString("title")
+        val content = arguments?.getString("content")
+
+        val textTitle = view.findViewById<TextView>(R.id.textViewTitle)
+        val textContent = view.findViewById<TextView>(R.id.textViewContent)
+
+        textTitle.text = title
+        textContent.text = content
+
        val btnBack = view.findViewById<ImageView>(R.id.imgViewBack)
         btnBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
