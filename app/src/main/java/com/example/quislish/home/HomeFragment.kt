@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quislish.R
-import com.example.quislish.quis.QuizLevelAdapter
+import com.example.quislish.home.QuizLevelAdapter
 import com.example.quislish.data.model.LevelViewModel
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -17,7 +18,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     // SharedViewModel → dipakai HomeFragment & QuizFragment
 
-    private val levelViewModel: LevelViewModel by activityViewModels()
+    val levelViewModel: LevelViewModel by activityViewModels {
+        ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

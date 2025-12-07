@@ -1,8 +1,7 @@
-package com.example.quislish.quis
+package com.example.quislish.home
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quislish.R
 import com.example.quislish.data.model.Level

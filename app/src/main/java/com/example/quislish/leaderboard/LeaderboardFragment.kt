@@ -1,5 +1,6 @@
 package com.example.quislish.leaderboard
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,14 +40,12 @@ class LeaderboardFragment : Fragment() {
             points = 100,
             colorRes = R.color.red_400
         )
-
-        // ----- CHANGE HERE -----
-        // binding.layoutUserRank sudah merupakan ItemUserRankBinding (generated),
-        // jadi gunakan langsung tanpa .bind(...)
         val user = binding.layoutUserRank
 
+        val sharedPref = requireActivity().getSharedPreferences("USER_DATA", Context.MODE_PRIVATE)
+        val username = sharedPref.getString("username", "User")
         user.txtRank.text = userRank.rank.toString()
-        user.txtName.text = userRank.name
+        user.txtName.text = username
         user.txtDescription.text = "lorem ipsum dolor sit amet blukutuk blukutuk"
         user.txtPoints.text = "✦${userRank.points}"
 
