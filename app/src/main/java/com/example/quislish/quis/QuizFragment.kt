@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.quislish.R
 import com.example.quislish.data.model.LevelViewModel
 import com.example.quislish.data.model.Question
+import com.example.quislish.data.repository.StreakRepository
 
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
@@ -93,9 +94,9 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
             showAnswerPopup(isCorrect) {
                 if (!moved) {
-                    // selesai kuis
                     val score = quizViewModel.score.value ?: 0
-
+                    val streakRepo = StreakRepository(requireContext())
+                    streakRepo.updateStreak()
                     val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
                     intent.putExtra("score", score)
                     startActivity(intent)

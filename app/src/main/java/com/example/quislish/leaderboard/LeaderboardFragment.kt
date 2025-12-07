@@ -33,7 +33,7 @@ class LeaderboardFragment : Fragment() {
     }
 
     private fun setupUserRank() {
-        // Dummy user login
+
         val userRank = UserRank(
             rank = 10,
             name = "Fakhruddin",
@@ -49,10 +49,8 @@ class LeaderboardFragment : Fragment() {
         user.txtDescription.text = "lorem ipsum dolor sit amet blukutuk blukutuk"
         user.txtPoints.text = "✦${userRank.points}"
 
-        // ganti sesuai id di item_user_rank.xml, misal cardView atau containerLayout
-        // jika id di xml adalah "card_view" maka:
         user.cardView.setBackgroundResource(userRank.colorRes)
-        // jika id berbeda, gunakan nama binding property yang sesuai (cek generated binding)
+
     }
 
     private fun setupWorldRank() {

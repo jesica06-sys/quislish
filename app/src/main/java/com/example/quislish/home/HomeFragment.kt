@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quislish.R
 import com.example.quislish.home.QuizLevelAdapter
 import com.example.quislish.data.model.LevelViewModel
+import com.example.quislish.data.repository.StreakRepository
+import android.widget.TextView
+
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var recyclerView: RecyclerView
@@ -25,6 +28,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val streakRepo = StreakRepository(requireContext())
+        val streak = streakRepo.getStreak()
+
+        val txtStreak = view.findViewById<TextView>(R.id.txtStrikeDays)
+        txtStreak.text = "You have strike $streak days"
 
         recyclerView = view.findViewById(R.id.recyclerLevels)
 
@@ -41,7 +49,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        /** AUTO UPDATE level list */
+
         levelViewModel.levels.observe(viewLifecycleOwner) { list ->
             adapter.updateData(list)
         }
