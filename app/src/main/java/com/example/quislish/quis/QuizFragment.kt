@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.quislish.R
 import com.example.quislish.data.model.LevelViewModel
 import com.example.quislish.data.model.Question
+import com.example.quislish.data.repository.StreakRepository
 
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
@@ -24,8 +25,11 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         arguments?.getInt("levelId") ?: 1
     }
 
-    // Shared LevelViewModel -> dipakai HomeFragment & QuizFragment
-    private val levelViewModel: LevelViewModel by activityViewModels()
+
+    val levelViewModel: LevelViewModel by activityViewModels {
+        ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+    }
+
 
     // >>> TIDAK ADA FILE FACTORY <<<
     private val quizViewModel: QuizViewModel by viewModels {
@@ -86,20 +90,53 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
         btnNext.setOnClickListener {
-            val moved = quizViewModel.nextQuestion()
+            val (moved, isCorrect) = quizViewModel.nextQuestion()
 
-            if (!moved) {
-                val score = quizViewModel.score.value ?: 0
-                Toast.makeText(requireContext(), "Selesai! Score: $score", Toast.LENGTH_LONG).show()
-
-
-                val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
-                intent.putExtra("score", score)
-                startActivity(intent)
-
-                requireActivity().finish()
+            showAnswerPopup(isCorrect) {
+                if (!moved) {
+                    val score = quizViewModel.score.value ?: 0
+                    val streakRepo = StreakRepository(requireContext())
+                    streakRepo.updateStreak()
+                    val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
+                    intent.putExtra("score", score)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
             }
         }
+
+
+    }
+
+    private fun showAnswerPopup(isCorrect: Boolean, onClose: () -> Unit) {
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        val view = layoutInflater.inflate(R.layout.popup_answer, null)
+
+        val txtStatus = view.findViewById<TextView>(R.id.txtStatus)
+        val txtDesc = view.findViewById<TextView>(R.id.txtDesc)
+        val btnOk = view.findViewById<Button>(R.id.btnOk)
+
+        if (isCorrect) {
+            txtStatus.text = "Jawaban Benar"
+            txtDesc.text = "Mantap! Kamu memilih jawaban yang tepat."
+            txtStatus.setTextColor(requireContext().getColor(R.color.correct_green))
+        } else {
+            txtStatus.text = "Jawaban Salah"
+            txtDesc.text = "Yahh, coba fokus lagi ya!"
+            txtStatus.setTextColor(requireContext().getColor(R.color.wrong_red))
+        }
+
+        builder.setView(view)
+        val dialog = builder.create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnOk.setOnClickListener {
+            dialog.dismiss()
+            onClose()   // callback setelah popup ditutup
+        }
+
+        dialog.show()
     }
 
     private fun bindQuestion(q: Question) {
@@ -117,6 +154,13 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
     }
 
     private fun resetOptionStyles() {
+        // Reset semua ke warna bawaan
+        cardOpt0.setCardBackgroundColor(requireContext().getColor(R.color.blue_200))
+        cardOpt1.setCardBackgroundColor(requireContext().getColor(R.color.red_200))
+        cardOpt2.setCardBackgroundColor(requireContext().getColor(R.color.orange_200))
+        cardOpt3.setCardBackgroundColor(requireContext().getColor(R.color.purple_200))
+
+        // Reset elevation
         listOf(cardOpt0, cardOpt1, cardOpt2, cardOpt3).forEach {
             it.cardElevation = 2f
         }
@@ -124,12 +168,18 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
     private fun highlightSelected(index: Int) {
         resetOptionStyles()
+
         val selectedCard = when (index) {
             0 -> cardOpt0
             1 -> cardOpt1
             2 -> cardOpt2
             else -> cardOpt3
         }
+
+        selectedCard.setCardBackgroundColor(requireContext().getColor(R.color.gray))
         selectedCard.cardElevation = 8f
     }
+
+
+
 }

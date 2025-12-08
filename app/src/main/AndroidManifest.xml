@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,44 +10,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quislish" >
+
         <activity
             android:name=".quis.CompleteQuizActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Quislish" />
+            android:exported="false" />
+
         <activity
             android:name=".quis.StrikeActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".WelcomeActivity"-->
-<!--            android:exported="false" /> &lt;!&ndash; <activity &ndash;&gt;-->
-        <!-- android:name=".Home2Activity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ProfileActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".LessonActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".LeaderboardsActivity" -->
-        <!-- android:exported="false" /> -->
+
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Quislish" />
+            android:exported="false" />
+
+        <!-- HomeActivity TIDAK perlu MAIN -->
         <activity
             android:name=".main.HomeActivity"
             android:exported="false"
             android:theme="@style/Theme.Quislish" />
+
+        <!-- WelcomeActivity SEBAGAI LAUNCHER -->
         <activity
             android:name=".WelcomeActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

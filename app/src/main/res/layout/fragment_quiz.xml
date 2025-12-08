@@ -81,7 +81,7 @@
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
             android:layout_columnWeight="1"
-            android:background="@color/blue_200"
+            app:cardBackgroundColor="@color/blue_200"
             android:foreground="?attr/selectableItemBackground">
 
             <TextView
@@ -103,7 +103,7 @@
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
             android:layout_columnWeight="1"
-            android:background="@color/red_200"
+            app:cardBackgroundColor="@color/red_200"
             android:foreground="?attr/selectableItemBackground">
 
             <TextView
@@ -125,7 +125,7 @@
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
             android:layout_columnWeight="1"
-            android:background="@color/red_200"
+            app:cardBackgroundColor="@color/orange_200"
             android:foreground="?attr/selectableItemBackground">
 
             <TextView
@@ -147,7 +147,7 @@
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
             android:layout_columnWeight="1"
-            android:background="@color/orange_200"
+            app:cardBackgroundColor="@color/purple_200"
             android:foreground="?attr/selectableItemBackground">
 
             <TextView

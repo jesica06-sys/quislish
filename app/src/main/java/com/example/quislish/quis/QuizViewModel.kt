@@ -32,36 +32,37 @@ class QuizViewModel(
         _selectedAnswerIndex.value = index
     }
 
-    fun nextQuestion(): Boolean {
+    fun nextQuestion(): Pair<Boolean, Boolean> {
         val idx = _currentIndex.value ?: 0
 
-        // Hitung score
         val selected = _selectedAnswerIndex.value
+        var isCorrect = false
+
         if (selected != null) {
             val correct = questions[idx].correctIndex
             if (selected == correct) {
                 _score.value = (_score.value ?: 0) + 1
+                isCorrect = true
             }
         }
 
-        // Hitung progress
-
-
-        // UPDATE PROGRESS melalui LevelViewModel
-
-
-        // Pindah soal
         return if (idx < questions.size - 1) {
             val next = idx + 1
             levelViewModel.updateProgress(levelId, next)
+
             _currentIndex.value = next
             _currentQuestion.value = questions[next]
             _selectedAnswerIndex.value = null
-            true
+
+            Pair(true, isCorrect)
         } else {
-            false
+            levelViewModel.updateProgress(levelId, questions.size)
+
+            Pair(false, isCorrect)
         }
     }
+
+
 
     fun totalQuestions(): Int = questions.size
 

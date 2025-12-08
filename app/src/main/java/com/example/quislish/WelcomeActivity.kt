@@ -8,12 +8,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.quislish.main.HomeActivity
 
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_welcome)
@@ -22,11 +25,11 @@ class WelcomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Ambil ID dari XML
+
         val username = findViewById<EditText>(R.id.username)
         val btnNext = findViewById<Button>(R.id.button2)
 
-        // Aksi Tombol
+
         btnNext.setOnClickListener {
             val name = username.text.toString().trim()
 
@@ -34,13 +37,13 @@ class WelcomeActivity : AppCompatActivity() {
                 Toast.makeText(this, "Username wajib diisi!", Toast.LENGTH_SHORT).show()
             } else {
 
-                // ✅ SIMPAN USERNAME KE SHAREDPREFERENCES
+
                 val sharedPref = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE)
                 val editor = sharedPref.edit()
                 editor.putString("username", name)
                 editor.apply()
 
-                // pindah activity
+
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra("username", name)
                 startActivity(intent)
