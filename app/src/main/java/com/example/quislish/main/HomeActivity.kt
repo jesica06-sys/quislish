@@ -18,11 +18,22 @@ class HomeActivity : AppCompatActivity() {
 
         // >>> INIT DI SINI! SESUAI ID DI XML MU <<<
         bottomNavContainer = findViewById(R.id.bottomNav)
-
         val navHost = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-
         navController = navHost.navController
+
+        val fragmentName = intent.getStringExtra("fragment")
+        if (fragmentName != null) {
+            when (fragmentName) {
+                "home" -> {
+                    navController.popBackStack(R.id.homeFragment, false)
+                    navController.navigate(R.id.homeFragment)
+                }
+                "leaderboards" -> navController.navigate(R.id.leaderboardFragment)
+                "lesson" -> navController.navigate(R.id.lessonFragment)
+                "profile" -> navController.navigate(R.id.profileFragment)
+            }
+        }
 
         // --- tampilkan / sembunyikan navbar ---
         navController.addOnDestinationChangedListener { _, destination, _ ->
