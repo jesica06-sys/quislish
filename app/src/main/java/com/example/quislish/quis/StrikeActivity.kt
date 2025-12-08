@@ -3,6 +3,7 @@ package com.example.quislish.quis
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,5 +31,22 @@ class StrikeActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+
+                    val intent = Intent(this@StrikeActivity, HomeActivity::class.java)
+                    intent.putExtra("fragment", "home")
+
+                    // tidak membuat activity baru
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        )
     }
 }
