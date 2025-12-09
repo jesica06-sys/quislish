@@ -92,23 +92,24 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         btnNext.setOnClickListener {
             val (moved, isCorrect) = quizViewModel.nextQuestion()
 
-            showAnswerPopup(isCorrect) {
+
                 if (!moved) {
-                    val score = quizViewModel.score.value ?: 0
-                    val streakRepo = StreakRepository(requireContext())
-                    streakRepo.updateStreak()
-                    val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
-                    intent.putExtra("score", score)
-                    startActivity(intent)
-                    requireActivity().finish()
+                    showFinalResultPopup()
+//                    val score = quizViewModel.score.value ?: 0
+//                    val streakRepo = StreakRepository(requireContext())
+//                    streakRepo.updateStreak()
+//                    val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
+//                    intent.putExtra("score", score)
+//                    startActivity(intent)
+//                    requireActivity().finish()
                 }
-            }
+
         }
 
 
     }
 
-    private fun showAnswerPopup(isCorrect: Boolean, onClose: () -> Unit) {
+    private fun showFinalResultPopup() {
         val builder = android.app.AlertDialog.Builder(requireContext())
         val view = layoutInflater.inflate(R.layout.popup_answer, null)
 
@@ -116,28 +117,34 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
         val txtDesc = view.findViewById<TextView>(R.id.txtDesc)
         val btnOk = view.findViewById<Button>(R.id.btnOk)
 
-        if (isCorrect) {
-            txtStatus.text = "Jawaban Benar"
-            txtDesc.text = "Mantap! Kamu memilih jawaban yang tepat."
-            txtStatus.setTextColor(requireContext().getColor(R.color.correct_green))
-        } else {
-            txtStatus.text = "Jawaban Salah"
-            txtDesc.text = "Yahh, coba fokus lagi ya!"
-            txtStatus.setTextColor(requireContext().getColor(R.color.wrong_red))
-        }
+        val correct = quizViewModel.score.value ?: 0
+        val total = quizViewModel.totalQuestions()
+        val wrong = total - correct
+
+        txtStatus.text = "Quiz Selesai!"
+        txtDesc.text = "Benar: $correct\nSalah: $wrong"
+        txtStatus.setTextColor(requireContext().getColor(R.color.blue_400))
 
         builder.setView(view)
         val dialog = builder.create()
-
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         btnOk.setOnClickListener {
             dialog.dismiss()
-            onClose()   // callback setelah popup ditutup
+
+            // lanjut ke halaman CompleteQuiz
+            val streakRepo = StreakRepository(requireContext())
+            streakRepo.updateStreak()
+
+            val intent = Intent(requireContext(), CompleteQuizActivity::class.java)
+            intent.putExtra("score", correct)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         dialog.show()
     }
+
 
     private fun bindQuestion(q: Question) {
         txtQuestion.text = q.questionText
