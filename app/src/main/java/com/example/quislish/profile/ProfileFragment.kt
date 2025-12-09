@@ -20,7 +20,7 @@ class ProfileFragment : Fragment() {
 
         // Title (boleh tetap)
         val title = view.findViewById<TextView>(R.id.tvAppName)
-        title.text = "Profile Fragment"
+        title.text = "Profile"
 
         // 1. Ambil username dari SharedPreferences
         val sharedPref = requireActivity().getSharedPreferences("USER_DATA", Context.MODE_PRIVATE)

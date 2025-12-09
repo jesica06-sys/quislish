@@ -45,7 +45,6 @@ class WelcomeActivity : AppCompatActivity() {
 
 
                 val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("username", name)
                 startActivity(intent)
             }
         }
