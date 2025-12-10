@@ -19,7 +19,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: QuizLevelAdapter
 
-    // SharedViewModel → dipakai HomeFragment & QuizFragment
 
     val levelViewModel: LevelViewModel by activityViewModels {
         ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)

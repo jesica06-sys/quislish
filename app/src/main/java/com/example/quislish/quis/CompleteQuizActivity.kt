@@ -16,6 +16,7 @@ class CompleteQuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // Menghubungkan layout XML
         setContentView(R.layout.activity_complete_quiz)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -24,6 +25,7 @@ class CompleteQuizActivity : AppCompatActivity() {
             insets
         }
 
+        // Override tombol back untuk kembali ke HomeActivity
         onBackPressedDispatcher.addCallback(
             this,
             object : OnBackPressedCallback(true) {

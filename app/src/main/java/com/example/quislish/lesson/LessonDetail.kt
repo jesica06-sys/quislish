@@ -15,14 +15,18 @@ class LessonDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        // Inflate layout fragment_lesson_detail
         val view = inflater.inflate(R.layout.fragment_lesson_detail, container, false)
 
+        // Ambil data title dan content yang dikirim dari LessonFragment
         val title = arguments?.getString("title")
         val content = arguments?.getString("content")
 
+        // Hubungkan TextView dari layout
         val textTitle = view.findViewById<TextView>(R.id.textViewTitle)
         val textContent = view.findViewById<TextView>(R.id.textViewContent)
 
+        // Tampilkan data ke TextView
         textTitle.text = title
         textContent.text = content
 

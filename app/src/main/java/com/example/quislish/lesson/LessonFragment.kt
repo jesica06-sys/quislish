@@ -15,19 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 class LessonFragment : Fragment() {
 
-    private lateinit var binding: FragmentLessonBinding
+    private lateinit var binding: FragmentLessonBinding  // ViewBinding untuk layout fragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate layout menggunakan ViewBinding
         binding = FragmentLessonBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding.root // Kembalikan root view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Membuat list data lesson yang akan ditampilkan ke RecyclerView
         val lessonList = listOf(
             LessonItem(
                 "Grammar",
@@ -43,18 +45,22 @@ class LessonFragment : Fragment() {
             )
         )
 
+        // Inisialisasi adapter dan listener item click
         val adapter = LessonAdapter(lessonList) { item ->
             val bundle = Bundle().apply {
+                // Mengirim data ke Fragment Detail
                 putString("title", item.title)
                 putString("content", item.content)
             }
 
+            // Navigasi ke LessonDetailFragment menggunakan Navigation Component
             findNavController().navigate(
                 R.id.actionLessonsToLessonDetail,
                 bundle
             )
         }
 
+        // Set RecyclerView
         binding.rvLesson.layoutManager = LinearLayoutManager(requireContext())
         binding.rvLesson.adapter = adapter
     }

@@ -15,8 +15,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        // >>> INIT DI SINI! SESUAI ID DI XML MU <<<
         bottomNavContainer = findViewById(R.id.bottomNav)
         val navHost = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -35,10 +33,9 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // --- tampilkan / sembunyikan navbar ---
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val hideOn = setOf(
-                R.id.quizFragment      // fragment quis
+                R.id.quizFragment
             )
 
             if (destination.id in hideOn) {
